@@ -16,7 +16,7 @@ def __mining(recvTx):
         print("")
         return Chain.getBlockFromHeight(Chain.getHeight())
     except Exception as e :
-        print(e)
+        print("Error Message:", e)
 
 class Block:
     def __init__(self):
@@ -40,18 +40,18 @@ class Block:
             ground_truth_root = ground_truth_Tree.Get_Root_leaf()
             self.newBlock["merkleRoot"] = ground_truth_root
             hashTarget=str(self.newBlock["previoushash"])+str(self.newBlock["unixtime"])+str(self.newBlock["difficulty"])+str(self.newBlock["version"])+str(self.newBlock["merkleRoot"])
-            blockhash=hashlib.sha256(hashTarget).hexdigest()
+            blockhash=hashlib.sha256(hashTarget.encode("utf-8")).hexdigest()
             nonce = 0
             while True:
                 if(blockhash > Chain().getDifficulty()):
                     nonce+=1
-                    blockhash = hashlib.sha256(hashTarget*nonce).hexdigest()
+                    blockhash = hashlib.sha256((hashTarget*nonce).encode("utf-8")).hexdigest()
                 else:
                     break
             self.newBlock["nonce"] = nonce
             self.newBlock["blockhash"] = blockhash
         except Exception as e:
-            print (e)
+            print ("Error: ",e)
 
 
         print ("mining Block: %d" % self.newBlock["height"])
