@@ -6,17 +6,17 @@ import threading
 import MerkleTrees
 def __mining(recvTx):
     try:
-    	tStart = time.time()
+        tStart = time.time()
         block=Block()
         block.getTransaction(recvTx)
         Chain.addBlock(block.newBlock["blockhash"] ,block.newBlock)
         block.ExchangeBlock()
         tEnd = time.time()
-        print "It cost %f sec" % (tEnd - tStart)
-        print ""
+        print("It cost %f sec" % (tEnd - tStart))
+        print("")
         return Chain.getBlockFromHeight(Chain.getHeight())
     except Exception as e :
-        print e
+        print(e)
 
 class Block:
     def __init__(self):
@@ -90,23 +90,23 @@ class Block:
     @staticmethod
     def ExchangeBlock():
         box=Chain.getBlockFromHeight(Chain.getHeight())
-        print "-"*60+"Block:"+str(box["height"])+"-"*60
-        print "{" 
-        print ""
-        print "height:", box["height"]
-        print "unixtime:", box["unixtime"]
-        print "previoushash:", box["previoushash"]
-        print "blockhash:", box["blockhash"]
-        print "merkleRoot:", box["merkleRoot"]
-        print "difficulty:", box["difficulty"]
-        print "nonce:", box["nonce"]
-        print "version:", box["version"]
-        print "txs:"
+        print("-"*60+"Block:"+str(box["height"])+"-"*60)
+        print("{")
+        print("")
+        print("height:", box["height"])
+        print("unixtime:", box["unixtime"])
+        print("previoushash:", box["previoushash"])
+        print("blockhash:", box["blockhash"])
+        print("merkleRoot:", box["merkleRoot"])
+        print("difficulty:", box["difficulty"])
+        print("nonce:", box["nonce"])
+        print("version:", box["version"])
+        print("txs:")
         for i in range(len(box["txs"])):
-            print box["txs"][i]
-        print ""
-        print "}"
-        print "-"*110
+            print(box["txs"][i])
+        print("")
+        print("}")
+        print("-"*110)
 
             
             
@@ -145,7 +145,7 @@ class Chain:
     
     @staticmethod
     def getDifficulty():
-        return "002fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        return("002fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
     @staticmethod
     def addBlock(key,block):
@@ -157,21 +157,21 @@ class Chain:
 
 
 _firstblock = Block().firstblock()
-print "----------------------------------------Block:0(this is first block)----------------------------------------"
-print "{"
-print ""
-print "height:", _firstblock["height"]
-print "unixtime:", _firstblock["unixtime"]
-print "previoushash:", _firstblock["previoushash"]
-print "blockhash:", _firstblock["blockhash"]
-print "merkleRoot:", _firstblock["merkleRoot"]
-print "difficulty:", _firstblock["difficulty"]
-print "nonce:", _firstblock["nonce"]
-print "version:", _firstblock["version"]
-print "txs:", _firstblock["txs"]
-print ""
-print "}"
-print "------------------------------------------------------------------------------------------------------------"
+print("----------------------------------------Block:0(this is first block)----------------------------------------")
+print("{")
+print("")
+print("height:", _firstblock["height"])
+print("unixtime:", _firstblock["unixtime"])
+print("previoushash:", _firstblock["previoushash"])
+print("blockhash:", _firstblock["blockhash"])
+print("merkleRoot:", _firstblock["merkleRoot"])
+print("difficulty:", _firstblock["difficulty"])
+print("nonce:", _firstblock["nonce"])
+print("version:", _firstblock["version"])
+print("txs:", _firstblock["txs"])
+print("")
+print("}")
+print("------------------------------------------------------------------------------------------------------------")
 
 if __name__ == "__main__":
     print("Send test1 transaction")
