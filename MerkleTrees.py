@@ -48,7 +48,7 @@ class Jae_MerkTree:
 
 			# 3.9 Create the new list of transaction
 			if current_right != '':
-				temp_transaction.append(hashlib.sha256(current_hash + current_right_hash).hexdigest())
+				temp_transaction.append(hashlib.sha256((current_hash + current_right_hash).encode('utf-8')).hexdigest())
 
 			# 3.01 If the left most is an empty string then only add the current value
 			else:
@@ -68,13 +68,13 @@ class Jae_MerkTree:
 
 	# 5. Get the root of the transaction
 	def Get_Root_leaf(self):
-		last_key = self.past_transaction.keys()[-1]
+		last_key = list(self.past_transaction.keys())[-1]
 		return self.past_transaction[last_key]
 
 # Declare the main part of the function to run
 if __name__ == "__main__":
 	# i) Actual Use Case
-	print "Final Example - Actuall use case of the Merkle Tree"
+	print ("Final Example - Actuall use case of the Merkle Tree")
 
 	# i-1) Declare a transaction - the ground truth
 	ground_truth_Tree = Jae_MerkTree()
@@ -89,5 +89,5 @@ if __name__ == "__main__":
 	ground_truth_root = ground_truth_Tree.Get_Root_leaf()
 
 	# i-3) The three company share all of the transaction 
-	print 'MerkleRoot is : ',ground_truth_root
+	print ('MerkleRoot is : ',ground_truth_root)
 # ---- END OF THE CODE ------
