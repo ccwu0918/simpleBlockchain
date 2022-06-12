@@ -17,6 +17,7 @@ def __mining(recvTx):
         return Chain.getBlockFromHeight(Chain.getHeight())
     except Exception as e :
         print("Error Message:", e)
+    return block
 
 class Block:
     def __init__(self):
@@ -184,7 +185,7 @@ if __name__ == "__main__":
     print("")
     txsPool.append(tx1)
     txsPool.append(tx2)
-    __mining(txsPool)
+    block1 = __mining(txsPool)
     print("Send test2 transaction")
     txsPool =[]
     tx3 = {'body': 'u5,u6,500$', 'unixtime': '1510822461.34', 'txhash': '84a861c9241f86dd4071da3931ea720dcf967465e7a3cb979c2f4a4177bf6a59'}
@@ -195,4 +196,4 @@ if __name__ == "__main__":
     print("")
     txsPool.append(tx3)
     txsPool.append(tx4)
-    __mining(txsPool)
+    block2 = __mining(txsPool)
